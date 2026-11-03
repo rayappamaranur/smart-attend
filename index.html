@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Attendance Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon">✓</span><span>Smart Attendance <b>Analyzer</b></span></div>
+    <button id="logoutBtn" class="btn btn-outline hidden">Logout</button>
+  </header>
+
+  <main>
+    <section id="authSection" class="auth-layout">
+      <div class="hero">
+        <span class="eyebrow">SMART CAMPUS • ATTENDANCE MANAGEMENT</span>
+        <h1>Track attendance.<br><span>Understand progress.</span></h1>
+        <p>A simple dashboard to record, review and analyze student attendance in one place.</p>
+        <div class="hero-points"><span>✓ Secure login</span><span>✓ Live attendance summary</span><span>✓ Individual records</span></div>
+      </div>
+      <div class="panel auth-panel">
+        <div class="tabs">
+          <button class="tab active" data-tab="login">Login</button>
+          <button class="tab" data-tab="register">Register</button>
+        </div>
+        <form id="loginForm">
+          <h2>Welcome back</h2><p class="muted">Log in to open your attendance dashboard.</p>
+          <label>Email address<input type="email" id="loginEmail" required placeholder="you@example.com"></label>
+          <label>Password<input type="password" id="loginPassword" required placeholder="Enter password"></label>
+          <button class="btn btn-primary full" type="submit">Login to dashboard</button>
+        </form>
+        <form id="registerForm" class="hidden">
+          <h2>Create account</h2><p class="muted">Register to start managing attendance.</p>
+          <label>Full name<input id="regName" required placeholder="Your name"></label>
+          <label>Email address<input type="email" id="regEmail" required placeholder="you@example.com"></label>
+          <label>Password<input type="password" id="regPassword" minlength="6" required placeholder="At least 6 characters"></label>
+          <button class="btn btn-primary full" type="submit">Create account</button>
+        </form>
+        <p id="authMessage" class="message" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="welcome-row"><div><span class="eyebrow">OVERVIEW</span><h1>Hello, <span id="userName">User</span> 👋</h1><p class="muted">Here is your attendance overview.</p></div><div class="today" id="today"></div></div>
+      <div class="stats">
+        <article class="stat-card"><span>Total records</span><strong id="totalCount">0</strong><small>Attendance entries</small></article>
+        <article class="stat-card"><span>Present</span><strong id="presentCount">0</strong><small>Marked present</small></article>
+        <article class="stat-card"><span>Absent</span><strong id="absentCount">0</strong><small>Marked absent</small></article>
+        <article class="stat-card"><span>Attendance rate</span><strong id="rateCount">0%</strong><small>Present / total</small></article>
+      </div>
+
+      <div class="content-grid">
+        <section class="panel">
+          <div class="section-heading"><div><span class="eyebrow">NEW ENTRY</span><h2>Record attendance</h2></div></div>
+          <form id="attendanceForm" class="form-grid">
+            <label>Student name<input id="studentName" required placeholder="Student full name"></label>
+            <label>Student ID / USN<input id="studentId" required placeholder="e.g. BCA001"></label>
+            <label>Subject<input id="subject" required placeholder="e.g. Database Management"></label>
+            <label>Date<input id="attendanceDate" type="date" required></label>
+            <label>Status<select id="status"><option>Present</option><option>Absent</option></select></label>
+            <label class="wide">Notes (optional)<input id="notes" placeholder="Add a short note"></label>
+            <button class="btn btn-primary wide" type="submit">Save attendance record</button>
+          </form>
+          <p id="recordMessage" class="message" aria-live="polite"></p>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading"><div><span class="eyebrow">RECORDS</span><h2>Attendance history</h2></div></div>
+          <input id="searchInput" class="search" placeholder="Search by student, ID or subject...">
+          <div class="table-wrap"><table><thead><tr><th>Student</th><th>Subject</th><th>Date</th><th>Status</th><th></th></tr></thead><tbody id="recordsBody"><tr><td colspan="5" class="empty">No attendance records yet.</td></tr></tbody></table></div>
+        </section>
+      </div>
+      <section id="detailPanel" class="panel detail-panel hidden">
+        <div class="section-heading"><div><span class="eyebrow">RECORD DETAILS</span><h2>Individual attendance</h2></div><button id="closeDetail" class="btn btn-outline">Close</button></div>
+        <div id="detailContent"></div>
+      </section>
+    </section>
+  </main>
+  <footer>© 2026 Smart Attendance Analyzer • Academic Project</footer>
+  <script src="app.js"></script>
+</body>
+</html>
